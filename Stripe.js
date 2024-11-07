@@ -1,6 +1,6 @@
 require('dotenv').config() // initializing dotenv file to use enviroment varibables 
 const express = require('express') //importing express
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY) //using secret key in env file
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY) //using secret key (private owner key) in env file
 
 const app = express() // intializing express in constant app
 
