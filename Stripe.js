@@ -43,5 +43,43 @@ app.get('/cancel', (req, res) => {
     res.send('Payment was canceled. You have been redirected back to the home page.')
 })
 
+app.post('/webhook', express.raw({type: 'application/json'}), (req, res) => {
+    const sig = req.headers['stripe-signature'];
+  
+    let event;
+  
+    try {
+        event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET_KEY);
+    } catch (err) {
+        return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+  
+    // Handle the event
+    switch (event.type) {
+        // Event for a successful payment intent
+        case 'payment_intent.succeeded':
+        console.log('Payment was successful!');
+        console.log(event.data.object);
+        break;
+    
+        // Event for a failed payment intent
+        case 'payment_intent.payment_failed':
+        console.log('Payment failed!');
+        console.log(event.data.object);
+        break;
+    
+        // Event for a completed checkout session (applicable if using Stripe Checkout)
+        case 'checkout.session.completed':
+        console.log('Checkout session completed successfully!');
+        console.log(event.data.object);
+        break;
+    
+        default:
+        console.log(`Unhandled event type ${event.type}`);
+    }
+
+    res.send();
+  });
+  
 app.listen(3000, () => console.log('Server started on port 3000')) //Express listen to port 3000
 //video at 36:00
