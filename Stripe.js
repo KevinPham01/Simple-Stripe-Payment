@@ -31,9 +31,8 @@ app.get('/commission', async (req, res) => {
 })
 
 app.get('/success',async (req, res) => {
-    const session = await stripe.checkout.sessions.retrieve(req.query.session_id, {expand: ['']})
-
-    console.log(session)
+    const session = await stripe.checkout.sessions.retrieve(req.query.session_id, { expand: ['payment_intent'] })
+    console.log(JSON.stringify(session))
 
     res.send('Payment Successful')
 })
