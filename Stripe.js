@@ -4,7 +4,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY) //using secret k
 
 const app = express() // intializing express in constant app
 
-app.set('view engine', 'ejs') //setting ejs template engine inside express
+app.use('/assets', express.static('assets')); // Uses the assets file
+app.set('view engine', 'ejs'); //setting ejs template engine inside express
 
 app.get('/', async (req, res) => { //creating a basic route to access it 
     res.render('Stripe.ejs')//renders the Stripe.ejs file 
@@ -30,12 +31,13 @@ app.get('/commission', async (req, res) => {
     res.redirect(session.url)
 })
 
-app.get('/success',async (req, res) => {
+app.get('/success', async (req, res) => {
     const session = await stripe.checkout.sessions.retrieve(req.query.session_id, { expand: ['payment_intent'] })
     console.log(JSON.stringify(session))
-
-    res.send('Payment Successful')
-})
+  
+    // Render the success.ejs template with the video playing automatically
+    res.render('success.ejs', { autoplay: true })
+  })
 
 app.get('/cancel', (req, res) => {
     // Provide feedback for the user after cancellation

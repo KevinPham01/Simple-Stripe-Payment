@@ -1,15 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="orderApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stripe with Node.js</title>
+    <title>Stripe Order Submission with IDs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="\views\Test.js"> </script>
+
 </head>
-<body>
-    <h1>Cart</h1>
-    <h2>Test Stripe</h2>
-    <h3>Price: $1.00</h3>
-    <p>AI service used to find the best service for your needs!</p>
-    <a href="/commission?cost=starter">Checkout</a>
+<body ng-controller="OrderController">
+    <div class="container mt-5">
+        <h1>Order Items</h1>
+        <div class="mb-3">
+            <label for="item-select" class="form-label">Select Item:</label>
+            <select id="item-select" class="form-select" ng-model="selectedItem" ng-options="item as item.name + ' - $' + item.price for item in items">
+            </select>
+        </div>
+        <button class="btn btn-primary" ng-click="addItemToOrder()">Add to Order</button>
+
+        <h2 class="mt-4">Order Summary</h2>
+        <ul class="list-group mb-3">
+            <li class="list-group-item" ng-repeat="item in order">
+                {{item.name}} - ${{item.price}}
+            </li>
+        </ul>
+        <p><strong>Total:</strong> ${{orderTotal()}}</p>
+        <button class="btn btn-success" ng-click="submitOrder()">Submit to Stripe</button>
+
+        <!-- Display the Order ID, Affiliate ID, Business ID, and Nestiq ID if they exist -->
+        <div class="mt-3" ng-if="orderId">
+            <h4>Order ID: {{order.ids.orderId}}</h4>
+        </div>
+        <div class="mt-3" ng-if="affiliateId">
+            <h4>Affiliate ID: {{order.ids.affiliateId}}</h4>
+        </div>
+        <div class="mt-3" ng-if="businessId">
+            <h4>Business ID: {{order.ids.businessId}}</h4>
+        </div>
+        <div class="mt-3" ng-if="nestiqId">
+            <h4>Nestiq ID: {{order.ids.nestiqId}}</h4>
+        </div>
+    </div>
+
+
 </body>
 </html>
