@@ -1,47 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="orderApp">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stripe Order Submission with IDs</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="/views/orderController.js"></script>
-
-
+    <title>Stripe with Node.js</title>
 </head>
-
-    
-
-<body ng-controller="OrderController" class="bg-light">
-    <div class="container mt-5 p-4 bg-white rounded shadow-sm">
-        <h1 class="mb-4 text-primary">Order Items</h1>
-        <div class="mb-3">
-            <label for="item-select" class="form-label">Select an Item:</label>
-            <select id="item-select" class="form-select" ng-model="selectedItem" ng-options="item as item.name + ' - $' + item.price for item in items">
-                <option value="">-- Choose an item --</option>
-            </select>
-        </div>
-        <button class="btn btn-primary mb-3" ng-click="addItemToOrder()" ng-disabled="!selectedItem">Add to Order</button>
-
-        <h2 class="mt-4 text-success">Order Summary</h2>
-        <ul class="list-group mb-3" ng-if="order.length > 0">
-            <li class="list-group-item d-flex justify-content-between align-items-center" ng-repeat="item in order">
-                {{item.name}}
-                <span class="badge bg-primary rounded-pill">${{item.price}}</span>
-            </li>
-        </ul>
-        <p class="fw-bold" ng-if="order.length > 0"><strong>Total:</strong> ${{orderTotal()}}</p>
-        <p ng-if="order.length === 0" class="text-muted">No items in the order. Please add items to see the summary.</p>
-        <button class="btn btn-success" ng-click="submitOrder()" ng-disabled="order.length === 0">Submit to Stripe</button>
-
-        <!-- Display generated IDs -->
-        <div class="mt-4">
-            <h4 class="text-info" ng-if="ids.orderId">Order ID: {{ids.orderId}}</h4>
-            <h4 class="text-info" ng-if="ids.affiliateId">Affiliate ID: {{ids.affiliateId}}</h4>
-            <h4 class="text-info" ng-if="ids.businessId">Business ID: {{ids.businessId}}</h4>
-            <h4 class="text-info" ng-if="ids.nestiqId">Nestiq ID: {{ids.nestiqId}}</h4>
-        </div>
-    </div>
+<body>
+    <h1>Cart</h1>
+    <h2>Test Stripe</h2>
+    <h3>Price: $1.00</h3>
+    <p>AI service used to find the best service for your needs!</p>
+    <a href="/commission?cost=starter">Checkout</a>
 </body>
 </html>
