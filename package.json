@@ -6,9 +6,9 @@
     "start": "nodemon"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kevin Pham",
   "license": "ISC",
-  "description": "",
+  "description": "A simple payment system using Stripe checkout API",
   "dependencies": {
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
