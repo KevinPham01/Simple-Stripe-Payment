@@ -42,6 +42,7 @@ Create a `.env` file in the root directory and include the following variables:
 
 ```env
 STRIPE_SECRET_KEY=your-stripe-secret-key
+STRIPE_CLI_SECRET_KEY=your-sripe-cli-secret-key
 STRIPE_WEBHOOK_SECRET_KEY=your-stripe-webhook-secret-key
 BASE_URL=http://localhost:3000
 ```
