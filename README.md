@@ -119,6 +119,10 @@ http://localhost:3000
 - [Express.js](https://expressjs.com/) - Web framework.
 - [Nodemon](https://nodemon.io/) - Development utility for auto-reloading the server.
 
+## Demo GIF
+![StripeCheckoutAPI-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/c5982e3a-7b60-4d4b-9f83-cb9dddd2873e)
+
+
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
