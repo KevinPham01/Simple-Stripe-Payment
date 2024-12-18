@@ -1,15 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="cartApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stripe with Node.js</title>
+    <title>AngularJS Cart with Stripe</title>
+    <!-- Include Bootstrap for styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 </head>
-<body>
-    <h1>Cart</h1>
-    <h2>Test Stripe</h2>
-    <h3>Price: $1.00</h3>
-    <p>AI service used to find the best service for your needs!</p>
-    <a href="/commission?cost=starter">Checkout</a>
+<body ng-controller="CartController" class="bg-light">
+
+    <!-- Header Section -->
+    <div class="container text-center mt-5">
+        <h1 class="display-4">Shopping Cart</h1>
+        <h2>Test Stripe Integration</h2>
+        <p class="lead">To pay service for your needs!</p>
+    </div>
+
+    <!-- Product Card -->
+    <div class="container mt-4">
+        <div class="card mx-auto" style="max-width: 400px;">
+            <div class="card-body text-center">
+                <h3 class="card-title">Starter Package</h3>
+                <h4 class="text-success">Price: {{ price | currency:"$" }}</h4>
+                <p class="card-text">Perfect Package for your needs.</p>
+                <a href="" class="btn btn-primary btn-lg" ng-click="checkout()">Checkout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="text-center mt-5">
+        <small>&copy; 2024 Stripe Integration Demo</small>
+    </div>
+
+    <!-- AngularJS Controller -->
+    <script>
+        var app = angular.module('cartApp', []);
+        app.controller('CartController', function($scope) {
+            $scope.price = 1.00;
+
+            // Checkout function (placeholder for Stripe functionality)
+            $scope.checkout = function() {
+                window.location.href = '/commission?cost=starter';
+            };
+        });
+    </script>
+
 </body>
 </html>
