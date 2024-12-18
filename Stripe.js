@@ -13,7 +13,7 @@ app.get('/', async (req, res) => { //creating a basic route to access it
 
 app.get('/commission', async (req, res) => {
     
-    const priceId = 'price_1QGt1XP8wOPU9A5AKlJ8AE0y'
+    const priceId = 'your price ID'
 
 
     const session = await stripe.checkout.sessions.create({
